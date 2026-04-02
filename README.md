@@ -1,6 +1,6 @@
 # MEC ALM-AdamX Source Code
 
-This repository contains the source code for the paper: **[Paper Title]**, implementing the Augmented Lagrangian Method (ALM) coupled with the AdamX algorithm for Joint Task Segmentation and Offloading in Mobile Edge Computing (MEC).
+This repository contains the source code for the paper: **A User Satisfaction-Oriented Task Segmentation Scheme for Joint Communication and Task Offloading**, implementing the Augmented Lagrangian Method (ALM) coupled with the AdamX algorithm for Joint Task Segmentation and Offloading in Mobile Edge Computing (MEC).
 
 ## Directory Structure
 
