@@ -1,0 +1,11 @@
+SlotFile,RunFile,SlotRows,RunRows
+Replay_SlotLevel_N240_R11to20.csv,Replay_RunLevel_N240_R11to20.csv,20000,40
+Replay_SlotLevel_N240_R21to30.csv,Replay_RunLevel_N240_R21to30.csv,20000,40
+Replay_SlotLevel_N270_R11to13.csv,Replay_RunLevel_N270_R11to13.csv,6000,12
+Replay_SlotLevel_N270_R14to16.csv,Replay_RunLevel_N270_R14to16.csv,6000,12
+Replay_SlotLevel_N270_R17to20.csv,Replay_RunLevel_N270_R17to20.csv,8000,16
+Replay_SlotLevel_N270_R21to30.csv,Replay_RunLevel_N270_R21to30.csv,20000,40
+Replay_SlotLevel_N300_R11to20.csv,Replay_RunLevel_N300_R11to20.csv,20000,40
+Replay_SlotLevel_N300_R21to28.csv,Replay_RunLevel_N300_R21to28.csv,16000,32
+Replay_SlotLevel_N300_R29to29.csv,Replay_RunLevel_N300_R29to29.csv,2000,4
+Replay_SlotLevel_N300_R30to30.csv,Replay_RunLevel_N300_R30to30.csv,2000,4

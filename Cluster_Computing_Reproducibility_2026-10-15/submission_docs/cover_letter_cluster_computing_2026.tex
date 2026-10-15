@@ -1,0 +1,81 @@
+% Cluster Computing - Cover Letter
+\documentclass[11pt]{letter}
+\usepackage{times}
+\usepackage{hyperref}
+
+\def\correspondingAuthor{Shu-Chuan Chu}
+\def\correspondingEmail{100130@nuist.edu.cn}
+
+\begin{document}
+
+\begin{letter}{
+    Editor-in-Chief \\
+    Cluster Computing
+}
+
+\opening{Dear Editor,}
+
+We submit our manuscript entitled \textbf{``Outcome-Aligned Task Offloading for DNN Inference in Heterogeneous Fog Networks''} for consideration in \textit{Cluster Computing}. This manuscript is original, has not been published previously, and is not under consideration elsewhere.
+
+\textbf{Why this manuscript fits the journal}
+
+\medskip
+
+The manuscript studies heterogeneous fog scheduling from a distributed-systems perspective. It addresses a mismatch that arises when an evolutionary optimizer ranks infeasible candidates before repair even though only repaired schedules are deployed. The proposed method aligns candidate ranking with the feasible service outcome and is evaluated under both static congestion and state-preserving repeated control. We believe this combination of distributed resource orchestration, constrained optimization, and systems evaluation aligns well with the journal's scope in cluster, distributed, and networked computing systems.
+
+\medskip
+\textbf{Main contributions}
+
+\medskip
+
+\begin{enumerate}
+    \item \textbf{Outcome-aligned memetic optimization.} M-CA-ALM ranks candidates by their repaired service outcome while preserving unrepaired genotypes for population diversity, thereby aligning the evolutionary signal with the schedule that is actually deployed.
+
+    \item \textbf{Cross-family and learned controls.} A paired factorial ablation isolates repair-aware ranking as the active mechanism, independent runs reproduce the effect in GA-Hybrid, and a separately trained and frozen OfflineGNN provides one leakage-free internal learned comparator; it is not presented as a published method.
+
+    \item \textbf{A bounded systems finding.} State-preserving replay identifies recoverable congestion in which outcome alignment delays queue saturation, as well as an immediate-saturation boundary at which the method no longer leads. A separately calibrated selector further localizes the transition regime without implying universal overload robustness.
+\end{enumerate}
+
+\medskip
+\textbf{Representative results}
+
+\medskip
+
+Across 30 paired seeds per scale, M-CA-ALM improves satisfaction over GA-Hybrid by 0.72--5.28 percentage points at the six congested scales, with every comparison significant after Holm correction. On independent runs 31--50, repair-aware GA improves by 3.08 points after equal scale averaging and wins all 20 paired run effects. In 20 paired 500-slot replays at $N=180$, M-CA-ALM raises mean satisfaction from 33.45\% to 46.41\% and delays median queue saturation from slot 7 to slot 56. At $N=300$, every tested controller saturates by slot 2 and M-CA-ALM no longer leads; the manuscript reports this operating boundary explicitly.
+
+\medskip
+\textbf{Supplementary materials}
+
+\medskip
+
+The submission is accompanied by code, experimental data, and supporting result exports used to generate the reported figures and tables.
+
+\medskip
+\textbf{Corresponding author}
+
+\medskip
+
+\correspondingAuthor \\
+Email: \correspondingEmail
+
+Thank you for considering our manuscript.
+
+\closing{Sincerely,}
+
+\medskip
+
+\textbf{Authors:}
+
+Jeng-Shyang Pan
+
+Peng-Yu Duan
+
+Li-Fa Liu
+
+Qing-Yong Yang
+
+Shu-Chuan Chu
+
+\end{letter}
+
+\end{document}

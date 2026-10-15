@@ -1,0 +1,52 @@
+\section{Outcome-Aligned M-CA-ALM}
+
+\subsection{Motivation}
+Let $\mathbf{X}$ denote an integer task-to-node assignment and let $\mathcal{R}(\mathbf{X})$ denote the deterministic Safe Harbor repair operator. The reported objective is evaluated on $\mathcal{R}(\mathbf{X})$, not on $\mathbf{X}$. Ranking candidates only by a raw surrogate can therefore select a genotype whose deployed phenotype serves fewer tasks. M-CA-ALM closes this gap by using repaired outcomes for selection while retaining raw genotypes for variation.
+
+\subsection{Population and Local Relaxation}
+Each individual stores one node index per task and is generated in a fixed order: one greedy genotype is inserted first, perturbed copies are created by changing a small number of task--node genes, and the remaining individuals are sampled uniformly over admissible nodes. This genotype is the object passed to crossover and mutation. For local refinement, an integer gene is mapped to logits $\mathbf{Z}$ and probabilities
+\begin{equation}
+ p_{i,f}=\frac{\exp(z_{i,f})}{\sum_{j\in\mathcal{F}}\exp(z_{i,j})}.
+\end{equation}
+The hard deadline indicator is approximated during refinement by
+\begin{equation}
+ \widetilde{US}_i=\left[1+\exp\left(\nu(T_i-T_i^{\max})\right)\right]^{-1}.
+\end{equation}
+The ALM gradient includes the load-dependent multiplier $q_f(\rho_f)$ from Section~3, so the marginal cost increases as a node approaches the stability boundary.
+
+\subsection{Repair-Aware Non-Lamarckian Selection}
+For candidate $\mathbf{X}$, selection constructs a temporary phenotype
+\begin{equation}
+ \widehat{\mathbf{X}}=\mathcal{R}(\mathbf{X})
+\end{equation}
+and computes its binary satisfied-task count. The repaired phenotype is used only for scoring. It is not written back to the genotype. This distinction is essential: phenotype ranking aligns selection with deployment, while genotype preservation prevents deterministic repair from making the population structurally homogeneous.
+
+Candidates are compared lexicographically. A resource-feasible phenotype dominates an infeasible phenotype; between feasible phenotypes, the larger satisfied-task count wins; between infeasible phenotypes, lower violation wins before satisfaction is considered. The same rule guards ALM local refinement, so a locally refined child cannot replace a strictly better parent. The repaired phenotype is temporary: it is used for phenotype ranking and for the ALM child-acceptance test, but it never overwrites the genotype. Only after the final elite has been selected is the shared repair and discrete post-optimization executed to produce the deployed schedule.
+
+\begin{algorithm}[t]
+\caption{Outcome-Aligned M-CA-ALM}
+\label{alg:mca_official}
+\SetAlgoLined
+\KwIn{Task set, fog nodes, population size $P$, generations $G$}
+\KwOut{Feasible repaired assignment}
+Initialize greedy, perturbed, and random integer genotypes\;
+\For{$g=1$ \KwTo $G$}{
+  \ForEach{genotype $\mathbf{X}$}{
+    Optionally generate $\mathbf{X}'$ by short ALM refinement\;
+    Temporarily repair $\mathbf{X}$ and $\mathbf{X}'$ for scoring\;
+    Accept $\mathbf{X}'$ only if its repaired lexicographic score improves\;
+    Rank $\mathbf{X}$ using the temporary phenotype $\mathcal{R}(\mathbf{X})$\;
+    Keep the unrepaired genotype for variation\;
+  }
+  Apply tournament selection, crossover, mutation, and elitism\;
+}
+Apply shared repair and discrete post-optimization only to the selected elite\;
+\Return the final assignment\;
+\end{algorithm}
+
+\subsection{Implementation contract}
+The shared Safe Harbor Repair (SFR) is deterministic. It sorts tasks by ascending minimum computation time and tests each task on its original node. The original node is retained only when memory fits, the post-placement load satisfies $\rho_f<0.95$, and latency including the context term $500\times10^{-6}n_f^2$ meets the deadline. If that test fails, all nodes are scanned in ascending index order and the feasible node with the lowest estimated latency is selected. If no node is feasible, the task is dropped. The load multiplier uses a $10^{-6}$ stabilizer; the reported metric still treats $\rho_f\geq0.99$ as a resource violation. Thus the repair threshold and evaluation threshold are distinct.
+
+The formal call path passes ``use\_repair=false'' to the internal ALM solver. During selection, a temporary SFR phenotype is constructed for every scored candidate, and its repaired satisfaction count and admitted latency determine the lexicographic score. The unrepaired genotype is retained for crossover and mutation. After the final elite is selected, one shared SFR pass and the discrete post-optimization produce the reported schedule. The ALM settings are population $P=50$, $G=50$ generations, one ALM step per generation, local-search probability 0.25, learning rate 0.1 for $N\geq100$, initial penalty/rho 0.01, multiplier $\mu=1.05$, $\alpha=0.8$, Adam $(\beta_1,\beta_2,\epsilon)=(0.9,0.999,10^{-8})$, and gradient clipping to $[-5,5]$. These details specify the implementation and do not imply a new convergence guarantee for ALM.
+
+One SFR pass costs $O(NF)$ in the worst case. Repair-aware evaluation therefore costs $O(PGNF)$, in addition to ALM updates. The main experiment is a fixed-configuration comparison: GA-Hybrid uses $100\times100$, whereas M-CA-ALM uses $50\times50$. A separate equal-budget control sets both methods to $100\times100$; its measured results are reported separately because equal search budget and the main fixed configuration answer different questions.

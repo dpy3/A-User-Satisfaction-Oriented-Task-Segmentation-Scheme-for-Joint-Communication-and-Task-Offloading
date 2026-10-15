@@ -1,0 +1,17 @@
+N,Algorithm,Cause,Count,UnsatisfiedTasks,SharePct
+300,ALM,MemoryBlockCount,218953,5816105,3.7645984726891966
+300,ALM,IntrinsicLatencyBlockCount,0,5816105,0.0
+300,ALM,SpilloverBlockCount,5597152,5816105,96.2354015273108
+300,ALM,FeasibleMissedCount,0,5816105,0.0
+300,ALMv9,MemoryBlockCount,299091,5863736,5.100690071995055
+300,ALMv9,IntrinsicLatencyBlockCount,0,5863736,0.0
+300,ALMv9,SpilloverBlockCount,5564645,5863736,94.89930992800494
+300,ALMv9,FeasibleMissedCount,0,5863736,0.0
+300,GAHybrid,MemoryBlockCount,239229,5758197,4.154581720632343
+300,GAHybrid,IntrinsicLatencyBlockCount,0,5758197,0.0
+300,GAHybrid,SpilloverBlockCount,5518968,5758197,95.84541827936765
+300,GAHybrid,FeasibleMissedCount,0,5758197,0.0
+300,Greedy,MemoryBlockCount,261299,5797787,4.50687477825591
+300,Greedy,IntrinsicLatencyBlockCount,0,5797787,0.0
+300,Greedy,SpilloverBlockCount,5536488,5797787,95.4931252217441
+300,Greedy,FeasibleMissedCount,0,5797787,0.0

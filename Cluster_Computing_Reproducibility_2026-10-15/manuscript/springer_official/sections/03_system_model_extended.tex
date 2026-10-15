@@ -1,0 +1,161 @@
+\section{System Model and Problem Formulation}
+
+\subsection{Fog Computing Network Architecture}
+The implemented simulator considers a centralized scheduler and a heterogeneous set of fog nodes $\mathcal{F}=\{1,\dots,F\}$. The standard benchmark is a one-shot batch placement problem, while the dynamic extension repeats the same placement pipeline over a sequence of decision slots. In both cases, the current codebase models fog execution only: each task is either assigned to one fog node or later rejected by the feasibility repair stage if no safe placement exists. The resulting formulation is therefore a constrained fog-selection problem rather than a joint local--edge--cloud formulation.
+
+\subsection{Task Model and Binary Offloading}
+Each request corresponds to one DNN inference task. In slot $t$, the scheduler observes an active task set $\Omega_t$ that contains newly arrived requests together with any unresolved backlog carried from the previous slot. Each task $i \in \Omega_t$ is represented by a task type and a deadline,
+\begin{equation}
+    \mathcal{T}_i = \{\tau_i, T_i^{\max}\},
+\end{equation}
+where $\tau_i \in \{1,2,3\}$ denotes VGG16, ResNet50, or MobileNetV2, respectively. The detailed communication and computation costs are not generated from a symbolic workload formula inside the optimizer; instead, they are obtained from precomputed matrices derived from hardware profiles. Let
+\begin{equation}
+    x_{i,f}(t) \in \{0,1\}
+\end{equation}
+denote the assignment decision, with $x_{i,f}(t)=1$ when task $i$ is mapped to fog node $f$ in slot $t$. We also define an explicit admission indicator
+\begin{equation}
+    a_i(t) \in \{0,1\},
+\end{equation}
+where $a_i(t)=1$ means that task $i$ remains assigned after repair and $a_i(t)=0$ means that the final repaired schedule rejects the task. Before repair, the optimizer produces exactly one node choice per active task:
+\begin{equation}
+    \sum_{f \in \mathcal{F}} x_{i,f}(t)=1,\quad \forall i \in \Omega_t.
+\end{equation}
+After repair, some tasks may be dropped, which is represented in the evaluation code by an all-zero row and therefore satisfies
+\begin{equation}
+    \sum_{f \in \mathcal{F}} x_{i,f}(t)=a_i(t),\quad \forall i \in \Omega_t.
+\end{equation}
+
+\subsection{Profile-Driven Cost Model}
+For each active task-node pair $(i,f)$, the simulator precomputes:
+\begin{itemize}
+    \item $\mathrm{Comp}_{i,f}$: base execution time obtained from the model profile and node capability;
+    \item $\mathrm{Comm}_{i,f}$: uplink transmission time computed from the wireless link model.
+\end{itemize}
+This design matches the implementation in which the optimization routines operate on the matrices stored in the structure $\mathrm{Pre}$.
+
+\subsection{Communication and Transmission Model}
+The communication between end users and fog nodes follows an OFDMA-style uplink model. The achievable data rate from user $i$ to fog node $f$ is
+\begin{equation}
+    R_{i,f} = B_{i,f} \log_2 \left( 1 + \frac{P_i^{tx} |h_{i,f}|^2}{\sigma^2 + I_{i,f}} \right)
+\end{equation}
+and the communication delay is
+\begin{equation}
+    T_{i,f}^{comm} = \frac{D_i}{R_{i,f}}.
+\end{equation}
+In practice, these values are already encoded in $\mathrm{Comm}_{i,f}$ by the preprocessing routine.
+
+\subsection{Computation Model with Static Batch Congestion Penalty}
+The simulator penalizes overloaded nodes by combining a static batch congestion term with an explicit context-switching overhead. Let
+\begin{equation}
+    L_f(t) = \sum_{i \in \Omega_t} x_{i,f}(t)\,\mathrm{Comp}_{i,f}
+\end{equation}
+be the aggregate compute load on node $f$ in slot $t$, and let $\bar{T}_t=\frac{1}{|\Omega_t|}\sum_{i \in \Omega_t} T_i^{\max}$ be the mean task deadline used as a normalization window. The effective utilization is
+\begin{equation}
+    \rho_f(t) = \frac{L_f(t)}{\bar{T}_t}.
+\end{equation}
+The congestion multiplier used in the code is
+\begin{equation}
+    q_f(t) =
+    \begin{cases}
+        1 + \dfrac{\rho_f(t)}{2(1-\rho_f(t)+\epsilon)}, & \rho_f(t) < 0.99,\\
+        10^4, & \rho_f(t) \ge 0.99,
+    \end{cases}
+\end{equation}
+where $\epsilon$ is a small numerical stabilizer. Let $K_f(t)=\sum_{i \in \Omega_t} x_{i,f}(t)$ denote the number of tasks assigned to node $f$. The context-switching overhead applied to all tasks on node $f$ is
+\begin{equation}
+    T_f^{ctx}(t) = \alpha_{ctx} K_f(t)^2,
+\end{equation}
+with $\alpha_{ctx}=500\mu s$. Therefore, the end-to-end latency of task $i$ placed on node $f$ is
+\begin{equation}
+    T_i(f,t) = \mathrm{Comm}_{i,f} + \mathrm{Comp}_{i,f}\, q_f(t) + T_f^{ctx}(t).
+\end{equation}
+This is the latency model actually used by the evaluation code.
+
+\subsection{Resource Feasibility}
+Each fog node has a memory budget $M_f^{cap}$. The memory footprint of task $i$, denoted by $m_i$, is approximated from the corresponding DNN profile. A placement is treated as resource-feasible by the simulator when
+\begin{equation}
+    \sum_{i \in \Omega_t} x_{i,f}(t) m_i \le M_f^{cap}, \quad \forall f \in \mathcal{F},
+\end{equation}
+and the congestion indicator remains below the safety threshold used by the simulator. If a candidate placement violates these limits, the repair stage reassigns or drops tasks until the returned solution becomes resource-feasible.
+
+\subsection{Dynamic Rollout Semantics}
+\label{sec:dynamic_rollout}
+Rather than treating each batch as an isolated placement instance, we interpret the simulator as a repeated closed-loop controller operating over a horizon of $H$ decision slots. The implemented solver in each slot is still the repaired static optimizer, but its input state, feasible region, and realized utility are coupled through backlog carry-over and environment perturbations. Let $A_t$ denote the number of new arrivals in slot $t$, and let $Q_t$ denote the backlog carried into that slot. The active set size is therefore
+\begin{equation}
+    |\Omega_t| = A_t + Q_t.
+\end{equation}
+We summarize the controlled system state by
+\begin{equation}
+    S_t = \left(Q_t,\Omega_t,\mathcal{C}_t,\xi_t\right),
+\end{equation}
+where $\mathcal{C}_t$ collects the communication and computation cost matrices used by the current slot, and $\xi_t$ represents exogenous perturbations such as bursty arrivals, deadline tightening, communication inflation, or node-capacity degradation. For a given state, the controller chooses a repaired binary assignment $\mathbf{X}(t)=\{x_{i,f}(t)\}$. After evaluation, unresolved tasks are transferred to the next slot through
+\begin{equation}
+    Q_{t+1} = \min\left\{Q^{\max}, \sum_{i \in \Omega_t} \left(1-US_i(t)\right)\right\},
+\end{equation}
+where $Q^{\max}$ is the backlog cap used by the rollout script. The resulting closed-loop transition can be written compactly as
+\begin{equation}
+    S_{t+1} = \Phi\!\left(S_t,\mathbf{X}(t),\xi_{t+1}\right).
+\end{equation}
+The state-preserving replay implementation invokes the same slot-level optimizer repeatedly and retains unresolved task identities between slots. The formal replay reported in Section~5 uses 20 paired environment runs at each stress scale and validates complete algorithm pairing, environment seeds, slot coverage, and queue-state continuity before analysis.
+
+\subsection{User Satisfaction (US), Dynamic Metrics, and Problem Formulation}
+\label{sec:problem}
+For optimization, we use a smooth surrogate of deadline satisfaction:
+\begin{equation}
+    \widetilde{US}_i(T_i(t)) = \frac{1}{1 + \exp(\nu (T_i(t) - T_i^{\max}))}.
+\end{equation}
+For reporting, however, the simulator uses a strict binary score:
+\begin{equation}
+    US_i(t)=
+    \begin{cases}
+        1, & \text{if } T_i(t) \le T_i^{\max} \text{ and resource-feasible},\\[2pt]
+        0, & \text{otherwise}.
+    \end{cases}
+\end{equation}
+For a single slot, the practical objective of the discrete solver before repair is
+\begin{subequations}
+\begin{align}
+    \max_{\mathbf{X}(t)} \quad & \sum_{i \in \Omega_t} US_i(t) \\
+    \text{s.t.} \quad & \sum_{f \in \mathcal{F}} x_{i,f}(t) = 1, \quad \forall i \in \Omega_t, \\
+    & \sum_{i \in \Omega_t} x_{i,f}(t) m_i \le M_f^{cap}, \quad \forall f, \\
+    & \rho_f(t) < 0.99, \quad \forall f, \\
+    & x_{i,f}(t) \in \{0,1\}.
+\end{align}
+\end{subequations}
+The repair stage is part of the implemented decision pipeline, so the evaluated solution is the repaired binary assignment rather than the raw optimizer output. For the dynamic rollout, we do not claim that the current solver directly optimizes a long-horizon objective. Instead, we evaluate repeated closed-loop behavior through rollout-level metrics:
+\begin{equation}
+    \max_{\{\mathbf{X}(t)\}_{t=1}^{H}} \quad \mathcal{J}_H = \sum_{t=1}^{H} \gamma^{t-1}\!\left[\sum_{i \in \Omega_t} U_i(t) - \lambda_Q Q_{t+1}\right],
+\end{equation}
+where $\gamma \in (0,1]$ is a horizon-weighting factor and $\lambda_Q \ge 0$ penalizes backlog accumulation. This long-horizon objective is used as an organizing principle: even though the implemented controller solves slot-local subproblems, the repeated rollout is evaluated by how well it maintains timely service while suppressing future backlog. To make this interpretation measurable, we export the following trajectory summaries:
+\begin{align}
+    \overline{US} &= \frac{1}{H}\sum_{t=1}^{H}\frac{1}{|\Omega_t|}\sum_{i \in \Omega_t} US_i(t),\\
+    \overline{Q} &= \frac{1}{H}\sum_{t=1}^{H} Q_{t+1},\\
+    Q^{\mathrm{AUC}} &= \sum_{t=1}^{H} Q_{t+1},\\
+    Q^{\max} &= \max_{1 \le t \le H} Q_{t+1},\\
+    \overline{A} &= \frac{1}{H}\sum_{t=1}^{H}\frac{1}{|\Omega_t|}\sum_{i \in \Omega_t} a_i(t),
+\end{align}
+where $H$ is the rollout length. In addition, the evaluation script reports the final backlog $Q_{H+1}$, together with rollout-level latency percentiles such as P95 and P99 over all admitted tasks. These metrics let the unified long-horizon controller viewpoint separate three effects that are conflated in a static snapshot: immediate deadline satisfaction, carried congestion passed to future slots, and the conservativeness of the repaired admission decisions.
+
+For the admission-aware and failure-aware variants, the code evaluates a slot-level utility that explicitly distinguishes timely admission, late admission, and outright rejection. Let
+\begin{equation}
+    z_i(t) = a_i(t)\,US_i(t)
+\end{equation}
+denote the indicator that task $i$ is both admitted and completed within deadline, and define the normalized excess-delay ratio
+\begin{equation}
+    \delta_i(t) = \max\left\{\frac{T_i(t)}{T_i^{\max}} - 1, 0\right\}.
+\end{equation}
+The admission-aware utility used by the new dynamic post-processing stage is
+\begin{equation}
+\begin{aligned}
+    U_i(t) ={}& \omega_{\mathrm{on}} z_i(t) - \omega_{\mathrm{late}} a_i(t)\left(1-z_i(t)\right) \\
+    &- \omega_{\mathrm{ex}} a_i(t)\delta_i(t) - \omega_{\mathrm{drop}}\left(1-a_i(t)\right),
+\end{aligned}
+\end{equation}
+where the current configuration uses $(\omega_{\mathrm{on}}, \omega_{\mathrm{late}}, \omega_{\mathrm{ex}}, \omega_{\mathrm{drop}}) = (1.0, 0.60, 0.24, 0.22)$. The rollout export then reports
+\begin{align}
+    \overline{A}_{\mathrm{timely}} &= \frac{1}{H}\sum_{t=1}^{H}\frac{1}{|\Omega_t|}\sum_{i \in \Omega_t} z_i(t),\\
+    \overline{A}_{\mathrm{late}} &= \frac{1}{H}\sum_{t=1}^{H}\frac{1}{|\Omega_t|}\sum_{i \in \Omega_t} a_i(t)\left(1-z_i(t)\right),\\
+    \overline{D} &= \frac{1}{H}\sum_{t=1}^{H}\frac{1}{|\Omega_t|}\sum_{i \in \Omega_t} \left(1-a_i(t)\right),\\
+    \overline{U} &= \frac{100}{H}\sum_{t=1}^{H}\frac{1}{|\Omega_t|}\sum_{i \in \Omega_t} U_i(t).
+\end{align}
+These additional metrics are not meant to replace $\overline{US}$ or backlog summaries. Instead, they provide a more discriminative diagnostic for unified long-horizon control: two policies may admit a similar number of tasks in the current slot, yet differ sharply in whether that admission remains timely, whether it amplifies future backlog, and whether it degrades gracefully under dynamic node failures.

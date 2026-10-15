@@ -1,0 +1,55 @@
+\begin{appendices}
+\section{Implementation Notes}
+
+\subsection{Local Search Objective}
+The MATLAB implementation applies short augmented-Lagrangian style updates inside a relaxed assignment space. The local objective combines a smooth deadline-satisfaction surrogate with penalty terms for deadline pressure and assignment consistency:
+\begin{equation}
+    \mathcal{L}(\mathbf{P}, \boldsymbol{\lambda}, \rho) =
+    f(\mathbf{P}) + \sum_k \psi_k(\mathbf{P}, \lambda_k, \rho)
+\end{equation}
+where $f(\mathbf{P})$ denotes the negative surrogate utility and $\psi_k$ represents the penalty terms used in the current implementation. This appendix should be interpreted as an implementation-oriented summary rather than a formal convergence proof for the full memetic solver, because the complete algorithm also includes crossover, mutation, repair, and discrete post-optimization.
+
+\subsection{Static Batch Congestion Derivative}
+\label{appendix:gradients}
+The continuous local search uses the same static batch congestion structure as the main text. For a node $f$, define
+\begin{equation}
+    \rho_f = \frac{\sum_i p_{i,f}\,\mathrm{Comp}_{i,f}}{\bar{T}}
+\end{equation}
+and for the stable region $\rho_f < 0.99$ use
+\begin{equation}
+    q_f(\rho_f) = 1 + \frac{\rho_f}{2(1-\rho_f+\epsilon)}.
+\end{equation}
+The corresponding sensitivity with respect to $\rho_f$ is
+\begin{equation}
+    \frac{\partial q_f}{\partial \rho_f}
+    =
+    \frac{1+\epsilon}{2(1-\rho_f+\epsilon)^2},
+\end{equation}
+which is well approximated in code by the dominant term $\frac{1}{2(1-\rho_f)^2}$ when $\epsilon$ is very small. Combining this with
+\begin{equation}
+    \frac{\partial \rho_f}{\partial p_{k,f}} = \frac{\mathrm{Comp}_{k,f}}{\bar{T}}
+\end{equation}
+gives a node-level gradient signal that becomes steep near saturation. This is the mechanism used to discourage the relaxed search from adding probability mass to already congested nodes.
+
+\subsection{Softmax Relaxation}
+\label{appendix:relaxation}
+To support gradient-based updates, the solver maps logits to per-task assignment probabilities:
+\begin{equation}
+    p_{i,f} = \frac{e^{z_{i,f}}}{\sum_{j=1}^{M} e^{z_{i,j}}}.
+\end{equation}
+This mapping keeps each task on the probability simplex during local refinement. The final binary decision is then recovered by an argmax projection, after which repair and discrete post-optimization are applied.
+
+\subsection{Repair and Post-Processing Cost}
+\label{appendix:complexity}
+The repair stage checks each task against candidate nodes and may scan all fog nodes when the original placement is infeasible. Under this implementation, one repaired solution therefore has worst-case cost $O(NM)$. The subsequent discrete post-optimization pass reuses the repaired assignment and attempts local reassignment improvements, so its cost is of the same order per sweep.
+
+\subsection{Per-Generation Cost Summary}
+One generation of M-CA-ALM combines several components:
+\begin{itemize}
+    \item precomputed matrix reuse for communication and computation costs;
+    \item local-search updates on a subset of the population;
+    \item feasibility-first evaluation and tournament selection;
+    \item integer crossover, mutation, repair, and elitism.
+\end{itemize}
+Using the notation of Section~4, the dominant cost per generation is governed by local-search and repair operations, which is consistent with the practical scaling discussion in the main text. This appendix does not claim a formal global runtime bound for all implementation branches; it summarizes the main computational terms observed in the current code.
+\end{appendices}

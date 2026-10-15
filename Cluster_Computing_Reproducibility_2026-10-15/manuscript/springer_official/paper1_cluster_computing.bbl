@@ -1,0 +1,480 @@
+%% BioMed_Central_Bib_Style_v1.01
+
+\begin{thebibliography}{26}
+% BibTex style file: bmc-mathphys.bst (version 2.1), 2014-07-24
+\ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
+\ifx \binits  \undefined \def \binits#1{#1}\fi
+\ifx \bauthor  \undefined \def \bauthor#1{#1}\fi
+\ifx \batitle  \undefined \def \batitle#1{#1}\fi
+\ifx \bjtitle  \undefined \def \bjtitle#1{#1}\fi
+\ifx \bvolume  \undefined \def \bvolume#1{\textbf{#1}}\fi
+\ifx \byear  \undefined \def \byear#1{#1}\fi
+\ifx \bissue  \undefined \def \bissue#1{#1}\fi
+\ifx \bfpage  \undefined \def \bfpage#1{#1}\fi
+\ifx \blpage  \undefined \def \blpage #1{#1}\fi
+\ifx \burl  \undefined \def \burl#1{\textsf{#1}}\fi
+\ifx \doiurl  \undefined \def \doiurl#1{\url{https://doi.org/#1}}\fi
+\ifx \betal  \undefined \def \betal{\textit{et al.}}\fi
+\ifx \binstitute  \undefined \def \binstitute#1{#1}\fi
+\ifx \binstitutionaled  \undefined \def \binstitutionaled#1{#1}\fi
+\ifx \bctitle  \undefined \def \bctitle#1{#1}\fi
+\ifx \beditor  \undefined \def \beditor#1{#1}\fi
+\ifx \bpublisher  \undefined \def \bpublisher#1{#1}\fi
+\ifx \bbtitle  \undefined \def \bbtitle#1{#1}\fi
+\ifx \bedition  \undefined \def \bedition#1{#1}\fi
+\ifx \bseriesno  \undefined \def \bseriesno#1{#1}\fi
+\ifx \blocation  \undefined \def \blocation#1{#1}\fi
+\ifx \bsertitle  \undefined \def \bsertitle#1{#1}\fi
+\ifx \bsnm \undefined \def \bsnm#1{#1}\fi
+\ifx \bsuffix \undefined \def \bsuffix#1{#1}\fi
+\ifx \bparticle \undefined \def \bparticle#1{#1}\fi
+\ifx \barticle \undefined \def \barticle#1{#1}\fi
+\bibcommenthead
+\ifx \bconfdate \undefined \def \bconfdate #1{#1}\fi
+\ifx \botherref \undefined \def \botherref #1{#1}\fi
+\ifx \url \undefined \def \url#1{\textsf{#1}}\fi
+\ifx \bchapter \undefined \def \bchapter#1{#1}\fi
+\ifx \bbook \undefined \def \bbook#1{#1}\fi
+\ifx \bcomment \undefined \def \bcomment#1{#1}\fi
+\ifx \oauthor \undefined \def \oauthor#1{#1}\fi
+\ifx \citeauthoryear \undefined \def \citeauthoryear#1{#1}\fi
+\ifx \endbibitem  \undefined \def \endbibitem {}\fi
+\ifx \bconflocation  \undefined \def \bconflocation#1{#1}\fi
+\ifx \arxivurl  \undefined \def \arxivurl#1{\textsf{#1}}\fi
+\csname PreBibitemsHook\endcsname
+
+%%% 1
+\bibitem[\protect\citeauthoryear{Mao et~al.}{2017}]{Mao2017}
+\begin{barticle}
+\bauthor{\bsnm{Mao}, \binits{Y.}},
+\bauthor{\bsnm{You}, \binits{C.}},
+\bauthor{\bsnm{Zhang}, \binits{J.}},
+\bauthor{\bsnm{Huang}, \binits{K.}},
+\bauthor{\bsnm{Letaief}, \binits{K.B.}}:
+\batitle{A survey on mobile edge computing: The communication perspective}.
+\bjtitle{IEEE Communications Surveys \& Tutorials}
+\bvolume{19}(\bissue{4}),
+\bfpage{2322}--\blpage{2358}
+(\byear{2017})
+\doiurl{10.1109/COMST.2017.2745201}
+\end{barticle}
+\endbibitem
+
+%%% 2
+\bibitem[\protect\citeauthoryear{Shi et~al.}{2016}]{Shi2016}
+\begin{barticle}
+\bauthor{\bsnm{Shi}, \binits{W.}},
+\bauthor{\bsnm{Cao}, \binits{J.}},
+\bauthor{\bsnm{Zhang}, \binits{Q.}},
+\bauthor{\bsnm{Li}, \binits{Y.}},
+\bauthor{\bsnm{Xu}, \binits{L.}}:
+\batitle{Edge computing: Vision and challenges}.
+\bjtitle{IEEE Internet of Things Journal}
+\bvolume{3}(\bissue{5}),
+\bfpage{637}--\blpage{646}
+(\byear{2016})
+\doiurl{10.1109/JIOT.2016.2579198}
+\end{barticle}
+\endbibitem
+
+%%% 3
+\bibitem[\protect\citeauthoryear{Mach and Becvar}{2017}]{Mach2017}
+\begin{barticle}
+\bauthor{\bsnm{Mach}, \binits{P.}},
+\bauthor{\bsnm{Becvar}, \binits{Z.}}:
+\batitle{Mobile edge computing: A survey on architecture and computation
+  offloading}.
+\bjtitle{IEEE Communications Surveys \& Tutorials}
+\bvolume{19}(\bissue{3}),
+\bfpage{1628}--\blpage{1656}
+(\byear{2017})
+\doiurl{10.1109/COMST.2017.2682318}
+\end{barticle}
+\endbibitem
+
+%%% 4
+\bibitem[\protect\citeauthoryear{Abbas et~al.}{2018}]{Abbas2018}
+\begin{barticle}
+\bauthor{\bsnm{Abbas}, \binits{N.}},
+\bauthor{\bsnm{Zhang}, \binits{Y.}},
+\bauthor{\bsnm{Taherkordi}, \binits{A.}},
+\bauthor{\bsnm{Skeie}, \binits{T.}}:
+\batitle{Mobile edge computing: A survey}.
+\bjtitle{IEEE Internet of Things Journal}
+\bvolume{5}(\bissue{1}),
+\bfpage{450}--\blpage{465}
+(\byear{2018})
+\doiurl{10.1109/JIOT.2017.2750180}
+\end{barticle}
+\endbibitem
+
+%%% 5
+\bibitem[\protect\citeauthoryear{Kumari et~al.}{2022}]{Kumari2022}
+\begin{barticle}
+\bauthor{\bsnm{Kumari}, \binits{N.}},
+\bauthor{\bsnm{Yadav}, \binits{A.}},
+\bauthor{\bsnm{Jana}, \binits{P.K.}}:
+\batitle{Task offloading in fog computing: A survey of algorithms and
+  optimization techniques}.
+\bjtitle{Computer Networks}
+\bvolume{214},
+\bfpage{109137}
+(\byear{2022})
+\doiurl{10.1016/j.comnet.2022.109137}
+\end{barticle}
+\endbibitem
+
+%%% 6
+\bibitem[\protect\citeauthoryear{Zhou et~al.}{2019}]{Zhou2019}
+\begin{barticle}
+\bauthor{\bsnm{Zhou}, \binits{Z.}},
+\bauthor{\bsnm{Chen}, \binits{X.}},
+\bauthor{\bsnm{Li}, \binits{E.}},
+\bauthor{\bsnm{Zeng}, \binits{L.}},
+\bauthor{\bsnm{Luo}, \binits{K.}},
+\bauthor{\bsnm{Zhang}, \binits{J.}}:
+\batitle{Edge intelligence: Paving the last mile of artificial intelligence
+  with edge computing}.
+\bjtitle{Proceedings of the IEEE}
+\bvolume{107}(\bissue{8}),
+\bfpage{1738}--\blpage{1762}
+(\byear{2019})
+\doiurl{10.1109/JPROC.2019.2918951}
+\end{barticle}
+\endbibitem
+
+%%% 7
+\bibitem[\protect\citeauthoryear{Zhang et~al.}{2016}]{Zhang2016}
+\begin{barticle}
+\bauthor{\bsnm{Zhang}, \binits{K.}},
+\bauthor{\bsnm{Mao}, \binits{Y.}},
+\bauthor{\bsnm{Leng}, \binits{S.}},
+\bauthor{\bsnm{Zhao}, \binits{Q.}},
+\bauthor{\bsnm{Li}, \binits{L.}},
+\bauthor{\bsnm{Peng}, \binits{X.}},
+\bauthor{\bsnm{Pan}, \binits{L.}},
+\bauthor{\bsnm{Maharjan}, \binits{S.}},
+\bauthor{\bsnm{Zhang}, \binits{Y.}}:
+\batitle{Energy-efficient offloading for mobile edge computing in 5g
+  heterogeneous networks}.
+\bjtitle{IEEE Access}
+\bvolume{4},
+\bfpage{5896}--\blpage{5907}
+(\byear{2016})
+\doiurl{10.1109/ACCESS.2016.2597169}
+\end{barticle}
+\endbibitem
+
+%%% 8
+\bibitem[\protect\citeauthoryear{Chen and Hao}{2018}]{Chen2018}
+\begin{barticle}
+\bauthor{\bsnm{Chen}, \binits{M.}},
+\bauthor{\bsnm{Hao}, \binits{Y.}}:
+\batitle{Task offloading for mobile edge computing in software defined
+  ultra-dense network}.
+\bjtitle{IEEE Journal on Selected Areas in Communications}
+\bvolume{36}(\bissue{3}),
+\bfpage{587}--\blpage{597}
+(\byear{2018})
+\doiurl{10.1109/JSAC.2018.2815360}
+\end{barticle}
+\endbibitem
+
+%%% 9
+\bibitem[\protect\citeauthoryear{You et~al.}{2017}]{You2017}
+\begin{barticle}
+\bauthor{\bsnm{You}, \binits{C.}},
+\bauthor{\bsnm{Huang}, \binits{K.}},
+\bauthor{\bsnm{Chae}, \binits{H.}},
+\bauthor{\bsnm{Kim}, \binits{B.-H.}}:
+\batitle{Energy-efficient resource allocation for mobile-edge computation
+  offloading}.
+\bjtitle{IEEE Transactions on Wireless Communications}
+\bvolume{16}(\bissue{3}),
+\bfpage{1397}--\blpage{1411}
+(\byear{2017})
+\doiurl{10.1109/TWC.2016.2633522}
+\end{barticle}
+\endbibitem
+
+%%% 10
+\bibitem[\protect\citeauthoryear{Liu et~al.}{2016}]{Liu2016}
+\begin{bchapter}
+\bauthor{\bsnm{Liu}, \binits{J.}},
+\bauthor{\bsnm{Mao}, \binits{Y.}},
+\bauthor{\bsnm{Zhang}, \binits{J.}},
+\bauthor{\bsnm{Letaief}, \binits{K.B.}}:
+\bctitle{Delay-optimal computation task scheduling for mobile-edge computing
+  systems}.
+In: \bbtitle{2016 IEEE International Symposium on Information Theory (ISIT)},
+pp. \bfpage{1451}--\blpage{1455}
+(\byear{2016}).
+\doiurl{10.1109/ISIT.2016.7541539}
+\end{bchapter}
+\endbibitem
+
+%%% 11
+\bibitem[\protect\citeauthoryear{Bi and Zhang}{2018}]{Bi2018}
+\begin{barticle}
+\bauthor{\bsnm{Bi}, \binits{S.}},
+\bauthor{\bsnm{Zhang}, \binits{Y.J.}}:
+\batitle{Computation rate maximization for wireless powered mobile-edge
+  computing with binary computation offloading}.
+\bjtitle{IEEE Transactions on Wireless Communications}
+\bvolume{17}(\bissue{6}),
+\bfpage{4177}--\blpage{4190}
+(\byear{2018})
+\doiurl{10.1109/TWC.2018.2821664}
+\end{barticle}
+\endbibitem
+
+%%% 12
+\bibitem[\protect\citeauthoryear{Deng et~al.}{2020}]{Deng2020}
+\begin{barticle}
+\bauthor{\bsnm{Deng}, \binits{S.}},
+\bauthor{\bsnm{Zhao}, \binits{H.}},
+\bauthor{\bsnm{Fang}, \binits{W.}},
+\bauthor{\bsnm{Yin}, \binits{J.}},
+\bauthor{\bsnm{Dustdar}, \binits{S.}},
+\bauthor{\bsnm{Zomaya}, \binits{A.Y.}}:
+\batitle{Edge intelligence: The confluence of edge computing and artificial
+  intelligence}.
+\bjtitle{IEEE Internet of Things Journal}
+\bvolume{7}(\bissue{8}),
+\bfpage{7457}--\blpage{7469}
+(\byear{2020})
+\doiurl{10.1109/JIOT.2020.2984887}
+\end{barticle}
+\endbibitem
+
+%%% 13
+\bibitem[\protect\citeauthoryear{Sun and Ansari}{2016}]{Sun2016}
+\begin{barticle}
+\bauthor{\bsnm{Sun}, \binits{X.}},
+\bauthor{\bsnm{Ansari}, \binits{N.}}:
+\batitle{Edgeiot: Mobile edge computing for the internet of things}.
+\bjtitle{IEEE Communications Magazine}
+\bvolume{54}(\bissue{12}),
+\bfpage{22}--\blpage{29}
+(\byear{2016})
+\doiurl{10.1109/MCOM.2016.1600492CM}
+\end{barticle}
+\endbibitem
+
+%%% 14
+\bibitem[\protect\citeauthoryear{Premsankar et~al.}{2018}]{Premsankar2018}
+\begin{barticle}
+\bauthor{\bsnm{Premsankar}, \binits{G.}},
+\bauthor{\bsnm{Di~Francesco}, \binits{M.}},
+\bauthor{\bsnm{Taleb}, \binits{T.}}:
+\batitle{Edge computing for the internet of things: A case study}.
+\bjtitle{IEEE Internet of Things Journal}
+\bvolume{5}(\bissue{2}),
+\bfpage{1275}--\blpage{1284}
+(\byear{2018})
+\doiurl{10.1109/JIOT.2018.2805263}
+\end{barticle}
+\endbibitem
+
+%%% 15
+\bibitem[\protect\citeauthoryear{Samy et~al.}{2022}]{Samy2022}
+\begin{barticle}
+\bauthor{\bsnm{Samy}, \binits{A.}},
+\bauthor{\bsnm{Elgendy}, \binits{I.A.}},
+\bauthor{\bsnm{Yu}, \binits{H.}},
+\bauthor{\bsnm{Zhang}, \binits{W.}},
+\bauthor{\bsnm{Zhang}, \binits{H.}}:
+\batitle{Secure task offloading in blockchain-enabled mobile edge computing
+  with deep reinforcement learning}.
+\bjtitle{IEEE Transactions on Network and Service Management}
+\bvolume{19}(\bissue{4}),
+\bfpage{4872}--\blpage{4887}
+(\byear{2022})
+\doiurl{10.1109/TNSM.2022.3190493}
+\end{barticle}
+\endbibitem
+
+%%% 16
+\bibitem[\protect\citeauthoryear{Deng et~al.}{2021}]{Deng2021}
+\begin{barticle}
+\bauthor{\bsnm{Deng}, \binits{X.}},
+\bauthor{\bsnm{Sun}, \binits{Z.}},
+\bauthor{\bsnm{Li}, \binits{D.}},
+\bauthor{\bsnm{Luo}, \binits{J.}},
+\bauthor{\bsnm{Wan}, \binits{S.}}:
+\batitle{User-centric computation offloading for edge computing}.
+\bjtitle{IEEE Internet of Things Journal}
+\bvolume{8}(\bissue{16}),
+\bfpage{12559}--\blpage{12568}
+(\byear{2021})
+\doiurl{10.1109/JIOT.2021.3057694}
+\end{barticle}
+\endbibitem
+
+%%% 17
+\bibitem[\protect\citeauthoryear{Kang et~al.}{2017}]{Kang2017}
+\begin{bchapter}
+\bauthor{\bsnm{Kang}, \binits{Y.}},
+\bauthor{\bsnm{Hauswald}, \binits{J.}},
+\bauthor{\bsnm{Gao}, \binits{C.}},
+\bauthor{\bsnm{Rovinski}, \binits{A.}},
+\bauthor{\bsnm{Mudge}, \binits{T.}},
+\bauthor{\bsnm{Mars}, \binits{J.}},
+\bauthor{\bsnm{Tang}, \binits{L.}}:
+\bctitle{Neurosurgeon: Collaborative intelligence between the cloud and mobile
+  edge}.
+In: \bbtitle{Proceedings of the Twenty-Second International Conference on
+  Architectural Support for Programming Languages and Operating Systems},
+pp. \bfpage{615}--\blpage{629}
+(\byear{2017}).
+\doiurl{10.1145/3093336.3037698}
+\end{bchapter}
+\endbibitem
+
+%%% 18
+\bibitem[\protect\citeauthoryear{Li et~al.}{2018}]{Li2018}
+\begin{bchapter}
+\bauthor{\bsnm{Li}, \binits{E.}},
+\bauthor{\bsnm{Zeng}, \binits{L.}},
+\bauthor{\bsnm{Zhou}, \binits{Z.}},
+\bauthor{\bsnm{Chen}, \binits{X.}}:
+\bctitle{Edgent: On-demand dnn co-inference with device-edge synergy}.
+In: \bbtitle{15th USENIX Symposium on Networked Systems Design and
+  Implementation (NSDI 18)},
+pp. \bfpage{359}--\blpage{372}
+(\byear{2018})
+\end{bchapter}
+\endbibitem
+
+%%% 19
+\bibitem[\protect\citeauthoryear{Eshratifar et~al.}{2019}]{Eshratifar2019}
+\begin{bchapter}
+\bauthor{\bsnm{Eshratifar}, \binits{A.E.}},
+\bauthor{\bsnm{Esmaili}, \binits{A.}},
+\bauthor{\bsnm{Pedram}, \binits{M.}}:
+\bctitle{Bottlenet: A deep learning architecture for intelligent mobile cloud
+  computing services}.
+In: \bbtitle{2019 IEEE/ACM International Symposium on Low Power Electronics and
+  Design (ISLPED)},
+pp. \bfpage{1}--\blpage{6}
+(\byear{2019}).
+\doiurl{10.1109/ISLPED.2019.8824955}
+\end{bchapter}
+\endbibitem
+
+%%% 20
+\bibitem[\protect\citeauthoryear{Teerapittayanon
+  et~al.}{2017}]{Teerapittayanon2017}
+\begin{bchapter}
+\bauthor{\bsnm{Teerapittayanon}, \binits{S.}},
+\bauthor{\bsnm{McDanel}, \binits{B.}},
+\bauthor{\bsnm{Kung}, \binits{H.T.}}:
+\bctitle{Distributed deep neural networks over the cloud, the edge and end
+  devices}.
+In: \bbtitle{2017 IEEE 37th International Conference on Distributed Computing
+  Systems (ICDCS)},
+pp. \bfpage{328}--\blpage{339}
+(\byear{2017}).
+\doiurl{10.1109/ICDCS.2017.226}
+\end{bchapter}
+\endbibitem
+
+%%% 21
+\bibitem[\protect\citeauthoryear{Hu et~al.}{2019}]{Hu2019DNNsurgery}
+\begin{bchapter}
+\bauthor{\bsnm{Hu}, \binits{C.}},
+\bauthor{\bsnm{Bao}, \binits{W.}},
+\bauthor{\bsnm{Wang}, \binits{D.}},
+\bauthor{\bsnm{Liu}, \binits{F.}}:
+\bctitle{Dynamic adaptive dnn surgery for inference acceleration on the edge}.
+In: \bbtitle{IEEE INFOCOM 2019 - IEEE Conference on Computer Communications},
+pp. \bfpage{1423}--\blpage{1431}
+(\byear{2019}).
+\doiurl{10.1109/INFOCOM.2019.8737614}
+\end{bchapter}
+\endbibitem
+
+%%% 22
+\bibitem[\protect\citeauthoryear{Mnih et~al.}{2015}]{Mnih2015}
+\begin{barticle}
+\bauthor{\bsnm{Mnih}, \binits{V.}},
+\bauthor{\bsnm{Kavukcuoglu}, \binits{K.}},
+\bauthor{\bsnm{Silver}, \binits{D.}}, \betal:
+\batitle{Human-level control through deep reinforcement learning}.
+\bjtitle{Nature}
+\bvolume{518}(\bissue{7540}),
+\bfpage{529}--\blpage{533}
+(\byear{2015})
+\doiurl{10.1038/nature14236}
+\end{barticle}
+\endbibitem
+
+%%% 23
+\bibitem[\protect\citeauthoryear{Huang et~al.}{2020}]{Huang2020}
+\begin{barticle}
+\bauthor{\bsnm{Huang}, \binits{L.}},
+\bauthor{\bsnm{Bi}, \binits{S.}},
+\bauthor{\bsnm{Zhang}, \binits{Y.-J.A.}}:
+\batitle{Deep reinforcement learning for online computation offloading in
+  wireless powered mobile-edge computing networks}.
+\bjtitle{IEEE Transactions on Mobile Computing}
+\bvolume{19}(\bissue{11}),
+\bfpage{2581}--\blpage{2593}
+(\byear{2020})
+\doiurl{10.1109/TMC.2019.2928811}
+\end{barticle}
+\endbibitem
+
+%%% 24
+\bibitem[\protect\citeauthoryear{Tang and Wong}{2022}]{Tang2022}
+\begin{barticle}
+\bauthor{\bsnm{Tang}, \binits{M.}},
+\bauthor{\bsnm{Wong}, \binits{V.W.S.}}:
+\batitle{Deep reinforcement learning for task offloading in mobile edge
+  computing systems}.
+\bjtitle{IEEE Transactions on Mobile Computing}
+\bvolume{21}(\bissue{6}),
+\bfpage{1985}--\blpage{1997}
+(\byear{2022})
+\doiurl{10.1109/TMC.2020.3036871}
+\end{barticle}
+\endbibitem
+
+%%% 25
+\bibitem[\protect\citeauthoryear{Meng et~al.}{2019}]{Meng2019}
+\begin{barticle}
+\bauthor{\bsnm{Meng}, \binits{X.}},
+\bauthor{\bsnm{Wang}, \binits{W.}},
+\bauthor{\bsnm{Wang}, \binits{Y.}},
+\bauthor{\bsnm{Lau}, \binits{V.K.N.}},
+\bauthor{\bsnm{Zhang}, \binits{Z.}}:
+\batitle{Closed-form delay-optimal computation offloading in mobile edge
+  computing systems}.
+\bjtitle{IEEE Transactions on Wireless Communications}
+\bvolume{18}(\bissue{10}),
+\bfpage{4653}--\blpage{4667}
+(\byear{2019})
+\doiurl{10.1109/TWC.2019.2926465}
+\end{barticle}
+\endbibitem
+
+%%% 26
+\bibitem[\protect\citeauthoryear{Min et~al.}{2019}]{Min2019}
+\begin{barticle}
+\bauthor{\bsnm{Min}, \binits{M.}},
+\bauthor{\bsnm{Xiao}, \binits{L.}},
+\bauthor{\bsnm{Chen}, \binits{Y.}},
+\bauthor{\bsnm{Cheng}, \binits{P.}},
+\bauthor{\bsnm{Wu}, \binits{D.}},
+\bauthor{\bsnm{Zhuang}, \binits{W.}}:
+\batitle{Learning-based computation offloading for iot devices with energy
+  harvesting}.
+\bjtitle{IEEE Transactions on Vehicular Technology}
+\bvolume{68}(\bissue{2}),
+\bfpage{1930}--\blpage{1941}
+(\byear{2019})
+\doiurl{10.1109/TVT.2018.2890685}
+\end{barticle}
+\endbibitem
+
+\end{thebibliography}

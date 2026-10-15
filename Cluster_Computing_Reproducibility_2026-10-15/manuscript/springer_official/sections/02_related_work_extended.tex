@@ -1,0 +1,48 @@
+\section{Related Work}
+
+\subsection{Mobile Edge Computing and Fog Computing Architectures}
+Mobile Edge Computing (MEC) and Fog Computing extend cloud resources toward geographically distributed edge nodes so that latency-sensitive services can be executed closer to end users \cite{Mao2017, Shi2016}. Surveys by Mach et al. \cite{Mach2017} and Abbas et al. \cite{Abbas2018} establish the architectural motivation: lower round-trip latency, better bandwidth locality, and improved support for IoT-scale service density. In fog settings, task-offloading surveys summarize how workloads are distributed across heterogeneous edge resources \cite{Kumari2022}, while edge-intelligence studies further connect resource orchestration with AI inference and decision support \cite{Zhou2019}.
+
+These architectural studies motivate the present work but do not by themselves resolve the control problem addressed here. Once a heterogeneous fog tier is fixed, the main challenge shifts to how a controller allocates model-specific tasks under hard memory limits, unequal compute capacities, fluctuating communication costs, and repeated congestion.
+
+\subsection{Computation Offloading Optimization}
+Task offloading has long been formulated as a latency-minimization, energy-minimization, or utility-maximization problem. Early binary-decision models typically decide whether a task should remain local or be offloaded, often under simplified service assumptions \cite{Zhang2016}. Later work broadened the formulation toward multi-user and heterogeneous settings, including energy-aware allocation and joint communication--computation optimization \cite{Chen2018, You2017, Liu2016, Bi2018, Zhou2019, Deng2020}. Representative studies also consider IoT-oriented edge placement, security-aware offloading, and user-centric offloading \cite{Sun2016, Premsankar2018, Samy2022, Deng2021}. These works motivate constrained offloading, but they do not evaluate the repair-aware evolutionary selection question considered here.
+
+However, much of this literature still targets one-shot or slot-local objectives and often evaluates schedulers primarily by energy or average delay. That perspective is useful but incomplete for repeated DNN service, where the scheduling decision in one slot can shape backlog, tail latency, and admission quality in later slots.
+
+\subsection{Deep Learning Inference at the Edge}
+Edge-side DNN inference introduces system properties that make offloading harder than generic task scheduling. Neurosurgeon, Edgent, and BottleNet respectively demonstrate partitioning, on-demand co-inference with early exiting, and intermediate-feature compression across device, edge, and cloud resources \cite{Kang2017, Li2018, Eshratifar2019}. Distributed inference and adaptive DNN surgery further show that the execution graph and hardware setting can affect the offloading decision \cite{Teerapittayanon2017, Hu2019DNNsurgery}.
+
+For the scheduling problem studied here, the key implication is that DNN jobs are not interchangeable scalar loads. Different models generate different latency traces and memory footprints, which makes congestion-sensitive placement substantially more difficult than allocating homogeneous service requests.
+
+\subsection{AI-Driven Optimization (DRL)}
+Deep Reinforcement Learning (DRL) is a natural candidate for dynamic offloading because it can, in principle, optimize a long-horizon objective directly. DQN-style methods \cite{Mnih2015} and later DRL formulations have been adapted to MEC scheduling and task offloading \cite{Huang2020, Tang2022}. Their main appeal is that they can absorb non-stationarity and multi-step reward structure without requiring an exact analytical model.
+
+The difficulty is operational rather than conceptual. DRL policies often require large training effort, careful reward shaping, and explicit safety handling once hard feasibility constraints are introduced. When infrastructure conditions change quickly, the distinction between ``policy quality'' and ``policy retraining burden'' becomes important. This is why snapshot-rerunnable optimization baselines remain relevant even when the evaluation target includes long-horizon behavior.
+
+\subsection{Gap Analysis}
+Table \ref{tab:related_work} summarizes the comparison between the present study and representative prior categories. The distinguishing point is not that this paper is the first to study offloading, congestion, or learning. Rather, it combines several ingredients that are usually evaluated separately:
+\begin{itemize}
+    \item \textbf{Batch-consistent congestion modeling:} Instead of importing a steady-state queue as the main optimization target, the simulator uses a static batch congestion penalty with explicit context-switching overhead so that the search signal remains aligned with snapshot scheduling.
+    \item \textbf{State-preserving long-horizon evaluation:} The replay carries unresolved task identities across slots and applies admission-aware scoring under repeated control. The 500-slot experiment quantifies both recoverable congestion and the immediate-saturation boundary instead of extrapolating static rankings to dynamic service.
+    \item \textbf{Shared feasibility enforcement across all methods:} Final schedules are passed through the same Safe Harbor Repair rule, which makes the comparison about optimization quality in a common admissible decision space rather than about who tolerates more hidden infeasibility.
+    \item \textbf{An auditable evidence ladder:} The completed evidence links metric audits, repair-collapse diagnosis, fixed-capacity congestion sweeps, state-preserving replay, and paired statistical tests under one frozen implementation. Deployment validation remains a separate extension.
+\end{itemize}
+
+\begin{table*}[t]
+\caption{Positioning of the present study against representative prior work categories}
+\label{tab:related_work}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{0.15\textwidth}p{0.25\textwidth}p{0.25\textwidth}p{0.25\textwidth}}
+\toprule
+\textbf{Work} & \textbf{Decision and objective} & \textbf{Feasibility treatment} & \textbf{Reported evidence} \\
+\midrule
+Zhang et al. \cite{Zhang2016} & Binary offloading; energy efficiency & Penalty-based constraints & Snapshot simulation \\
+Meng et al. \cite{Meng2019} & Partial offloading; delay minimization & Closed-form analytical policy & Analytical evaluation \\
+Min et al. \cite{Min2019} & Binary offloading; energy-aware control & Policy-dependent handling & Learned dynamic policy and simulation \\
+\textbf{Ours} & \textbf{Binary fog assignment; repaired service satisfaction} & \textbf{Shared final repair for every compared method} & \textbf{Frozen benchmark with 30 paired static seeds and 20 paired 500-slot replay runs} \\
+\bottomrule
+\end{tabular}
+\end{table*}

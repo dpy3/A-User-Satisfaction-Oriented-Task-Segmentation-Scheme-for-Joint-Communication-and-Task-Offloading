@@ -1,0 +1,72 @@
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[ruled]{algorithm2e}
+\usepackage{array,booktabs,longtable}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage{xcolor}
+% sn-jnl loads hyperref; configure it without reloading the package.
+% hypertexnames=false prevents duplicate anchors inherited from frozen
+% section files that restart local equation numbering.
+\hypersetup{hidelinks,hypertexnames=false,pdfauthor={Jeng-Shyang Pan; Peng-Yu Duan; Li-Fa Liu; Qing-Yong Yang; Shu-Chuan Chu}}
+\graphicspath{{figures/}}
+\setlength{\emergencystretch}{3em}
+\raggedbottom
+
+\newcommand{\Description}[1]{}
+% Compatibility alias for the IEEEtran appendix entry point in the frozen section.
+\renewcommand{\appendices}{\appendix}
+\newtheorem{proposition}{Proposition}
+
+\begin{document}
+
+\title[Outcome-Aligned Task Offloading]{Outcome-Aligned Task Offloading for DNN Inference in Heterogeneous Fog Networks}
+
+\author[1,2]{\fnm{Jeng-Shyang} \sur{Pan}}\email{100112@nuist.edu.cn}
+\author[1]{\fnm{Peng-Yu} \sur{Duan}}\email{202483060107@sdust.edu.cn}
+\author[1]{\fnm{Li-Fa} \sur{Liu}}\email{202282060085@sdust.edu.cn}
+\author[1]{\fnm{Qing-Yong} \sur{Yang}}\email{yang\_qy@sdust.edu.cn}
+\author*[3]{\fnm{Shu-Chuan} \sur{Chu}}\email{100130@nuist.edu.cn}
+
+\affil[1]{\orgname{College of Computer Science and Engineering, Shandong University of Science and Technology},
+  \orgaddress{\city{Qingdao}, \postcode{266590}, \country{China}}}
+\affil[2]{\orgname{Department of Information Management, Chaoyang University of Technology},
+  \orgaddress{\city{Taichung}, \postcode{41349}, \country{Taiwan}}}
+\affil[3]{\orgname{School of Artificial Intelligence, Nanjing University of Information Science and Technology},
+  \orgaddress{\city{Nanjing}, \postcode{210044}, \country{China}}}
+
+\abstract{Heterogeneous fog clusters must place DNN inference requests under coupled compute, memory, communication, and deadline constraints. We study a practical mismatch between candidate search and deployed service: evolutionary schedules are often ranked before feasibility repair, although only the repaired schedule is executed. M-CA-ALM resolves this mismatch by ranking repaired phenotypes while retaining unrepaired genotypes for variation and by applying guarded augmented-Lagrangian refinement. In a frozen five-node benchmark with 30 paired seeds, satisfaction improves over GA-Hybrid by 0.72--5.28 percentage points at congested scales $N=120$--$300$. An independent GA-family test reproduces a 3.08-point repair-aware gain, while a split-isolated OfflineGNN remains 9.67 points lower after equal scale averaging. In separate 500-slot replay experiments at $N=180$, mean satisfaction increases from 33.45\% to 46.41\% and median queue saturation is delayed from slot 7 to slot 56. The advantage disappears at the immediate-overload boundary where all controllers saturate by slot 2. These results support outcome-aligned selection within the tested five-node simulator and do not establish cross-topology or deployment generalization.}
+\keywords{Fog computing, mobile edge computing, DNN inference, task offloading, repair-aware optimization, congestion-aware scheduling}
+
+\maketitle
+
+\input{sections/01_introduction_official_v11}
+\input{sections/02_related_work_extended}
+\input{sections/03_system_model_extended}
+\input{sections/04_algorithm_official_v11}
+\input{sections/05_experiment_official_v11}
+\input{sections/08_discussion_official_v11}
+\input{sections/06_conclusion_official_v11}
+\input{sections/07_appendix}
+
+\backmatter
+\section*{Declarations}
+\begin{description}
+\item[Funding] Author confirmation required before submission.
+\item[Competing interests] Author confirmation required before submission.
+\item[Data availability] Frozen run-level data, figure source data, solver
+code, and checksum manifests are included in the reproducibility package.
+The authors must insert the public repository DOI or URL before submission.
+\item[Code availability] Author confirmation of the repository DOI or URL is
+required before submission.
+\item[Author contributions] CRediT roles must be completed and approved by
+all authors before submission.
+\item[Ethics approval and consent to participate] Not applicable to
+simulator-only experiments.
+\item[Consent for publication] Not applicable.
+\end{description}
+
+\bibliography{references}
+\end{document}

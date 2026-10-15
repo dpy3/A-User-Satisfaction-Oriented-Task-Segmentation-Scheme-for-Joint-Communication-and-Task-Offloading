@@ -1,0 +1,23 @@
+\section{Discussion}
+
+\subsection{Why Outcome Alignment Matters}
+The original solver ranked raw assignments and repaired only after search. That design produced almost no confirmed advantage over GA-Hybrid. Repair-aware ranking changes the search signal: a genotype is valuable only when its deployed phenotype increases the satisfied-task count. Preserving the unrepaired genotype avoids turning repair into a population-wide template. The factorial ablation directly supports this interpretation: Repair-aware and Full are identical on all 180 paired environments, whereas Raw and Guard are also identical. Independent GA-family tests then reproduce a positive repair-aware effect at all six congested scales. The improvement is therefore attributable to outcome-aligned ranking rather than to the acceptance guard, a different final feasibility rule, or an ALM-specific update.
+
+\subsection{Regime Dependence}
+The static protocol begins at $N=120$; lower offered-load cells were not
+part of the reported experiment. Within the tested scales, the benefit is largest at $N=250$ and 
+$N=300$. This pattern is consistent with the proposed mechanism: 
+repair-aware ranking carries little information when almost every candidate 
+is satisfiable, but becomes discriminative when raw structural differences 
+determine which tasks survive repair.
+
+\subsection{Cost and Deployment Scope}
+The improved satisfaction requires repeated repair evaluations during evolution. M-CA-ALM is roughly three times slower than GA-Hybrid and far slower than Greedy. It is suitable for centralized orchestration with second-scale decision windows, but the present implementation is not an ultra-low-latency scheduler. The zero guard effect also suggests that its current role is defensive: it enforces monotone local acceptance but does not improve the tested outcomes. The runtime overhead is therefore a measured limitation of the present implementation rather than evidence for a broader real-time deployment claim.
+
+\subsection{Dynamic Operating Boundary}
+The replay results show why static congestion and dynamic overload must be distinguished. At $N=180$, M-CA-ALM delays median queue saturation from slot 7 to slot 56 relative to GA-Hybrid while increasing satisfaction and reducing queue-cap drops. This is consistent with outcome-aligned selection preserving more useful service capacity across repeated decisions. The $N=300$ replay is qualitatively different: the queue is full by slot 2 for every controller and every run. Once the system enters this immediate-saturation regime, the slot-local repair-aware objective no longer guarantees the best cumulative throughput, and GA-Hybrid completes more tasks on average.
+
+This negative boundary is not inconsistent with the static $N=300$ result. The static experiment evaluates one repaired batch, whereas replay repeatedly adds arrivals to unresolved work. Under the present fixed capacity, the latter creates a demand level at which almost no transient recovery interval remains. The result therefore supports a regime-dependent claim: M-CA-ALM is effective in recoverable congestion, whereas persistent immediate saturation lies outside the operating range established here.
+
+\subsection{Limitations}
+The formal experiment uses one fixed five-node infrastructure and trace-driven simulation. It does not establish generalization to other node ratios, mobility patterns, packet-level contention, or live hardware clusters. The primary baseline comparison is fixed-configuration rather than equal-budget: GA-Hybrid receives $100\times100$ evolutionary iterations and M-CA-ALM receives $50\times50$. The equal-budget control is mixed across load levels and has a 3.4--4.3-fold ALM runtime penalty, so the fixed-table superiority must not be presented as a budget-normalized universal result. The repair-transfer result is scoped to the tested Safe Harbor repair operator and the two tested evolutionary families; it is not evidence for arbitrary repair operators. The low-load ceiling also reduces the number of informative static scales. The comparison includes Greedy, GA-Hybrid, LPRelax, DPP, MPC, M-CA-ALM, and a split-isolated OfflineGNN, but one frozen graph policy does not represent the full space of learned schedulers. The tested task-count axis is not a cross-infrastructure load measure. These limitations bound the evidence to the stated simulator, topology, algorithms, repair operator, search configurations, and operating regimes; they do not support online-stability, capacity-planning, or deployment claims.

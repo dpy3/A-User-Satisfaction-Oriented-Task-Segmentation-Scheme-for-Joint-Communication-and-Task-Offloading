@@ -1,0 +1,6 @@
+SlotFile,RunFile,SlotRows,RunRows
+Replay_SlotLevel_N180_R12to20.csv,Replay_RunLevel_N180_R12to20.csv,13500,27
+Replay_SlotLevel_N180_R1to2.csv,Replay_RunLevel_N180_R1to2.csv,3000,6
+Replay_SlotLevel_N180_R3to11.csv,Replay_RunLevel_N180_R3to11.csv,13500,27
+Replay_SlotLevel_N300_R11to20.csv,Replay_RunLevel_N300_R11to20.csv,15000,30
+Replay_SlotLevel_N300_R1to10.csv,Replay_RunLevel_N300_R1to10.csv,15000,30

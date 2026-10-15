@@ -1,0 +1,21 @@
+\section{Conclusion}
+
+This paper identifies and addresses an objective mismatch in repair-based fog scheduling: raw candidates are often optimized even though only repaired phenotypes are deployed. The proposed M-CA-ALM ranks candidates by repaired outcome while preserving unrepaired genotypes for diversity and guarding local ALM refinement against regressions.
+
+In a frozen five-node benchmark with 30 paired seeds at six tested scales
+$N\in\{120,150,180,200,250,300\}$, the fixed-configuration method improves
+satisfaction at every tested congested scale. The confirmed gain ranges from
+0.72 to 5.28 percentage points; all six fixed-configuration comparisons remain
+significant after Holm correction, and no paired seed favors GA-Hybrid. A
+separate five-run equal-budget control is mixed across scales, so the primary
+result is not a budget-normalized superiority claim. At $N=300$, satisfaction
+increases from 27.42\% to 31.38\% in the primary configuration, with a large
+paired effect size and an approximately threefold runtime increase.
+
+A separate 30-seed factorial ablation attributes the performance change to repair-aware phenotype ranking: enabling the ranking changes mean satisfaction by 0.42--6.06 percentage points across congested scales, whereas guarded acceptance has zero measured main or interaction effect. We therefore retain the guard as a monotone safety condition rather than claim it as a performance-producing component.
+
+Independent runs 31--50 reproduce the ranking effect in GA-Hybrid: the run-averaged repair-aware gain is 3.08 points across six congested scales, with all 20 paired run effects positive. A separately trained and frozen OfflineGNN remains 9.67 points below M-CA-ALM after equal scale averaging on the 30 test runs. These controls broaden the evidence beyond the original ALM ablation while remaining limited to one shared repair operator and one offline learned architecture.
+
+Formal 500-slot replay further bounds the claim. At $N=180$, M-CA-ALM improves mean satisfaction from 33.45\% to 46.41\%, wins all 20 paired runs, delays median full-backlog onset from slot 7 to slot 56 relative to GA-Hybrid, and reduces queue-cap drops. At $N=300$, however, all controllers reach the backlog cap by slot 2 and M-CA-ALM no longer leads. The method is therefore supported in recoverable congestion, not under arbitrary overload.
+
+The supported conclusion is correspondingly narrow: repair-aware outcome alignment improves both tested evolutionary families in the reported fixed-topology benchmark, with a measured runtime cost and a documented immediate-saturation boundary. The present results do not establish transfer to arbitrary repair operators, cross-infrastructure generalization, online stability, capacity planning, or live deployment.
