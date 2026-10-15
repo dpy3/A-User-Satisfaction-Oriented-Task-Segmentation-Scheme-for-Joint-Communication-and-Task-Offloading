@@ -657,7 +657,7 @@ end
 
 here = fileparts(mfilename('fullpath'));
 if ~isfield(cfg, 'seed_scale_reference'), cfg.seed_scale_reference = cfg.static_scales; end
-cfg.code_root = fileparts(here);
+cfg.code_root = here;
 cfg.results_root = fullfile(here, 'Results', [upper(cfg.mode) '_FIXED5']);
 cfg.is_manuscript_evidence = ismember(cfg.mode, {'formal', 'selectorformal', 'selectorv9formal', ...
     'selectorv9n300replication', 'ablationformal', 'baselineformal', 'repairtransferformal'});

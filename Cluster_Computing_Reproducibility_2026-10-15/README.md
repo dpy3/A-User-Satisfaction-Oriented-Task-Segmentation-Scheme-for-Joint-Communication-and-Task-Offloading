@@ -4,7 +4,7 @@ Target: *Cluster Computing* (Springer Nature official `sn-jnl.cls` source is und
 
 ## Package map
 
-- `code/`: MATLAB/Python source, runners, analysis scripts and frozen-protocol notes from `MCA_Official_2026`.
+- `code/`: MATLAB/Python source, runners, analysis scripts, frozen-protocol notes, and the required `Algorithms/`, `Environment/`, `Data/`, `Utils/`, and `Legacy_Root/` dependency folders.
 - `data/figure_source_data/`: source tables used to draw the final Springer figures.
 - `data/FORMAL_FIXED5/`: official static M-CA-ALM versus GA-Hybrid evidence.
 - `data/BASELINEFORMAL_FIXED5/`: implemented baseline comparison.
@@ -20,12 +20,12 @@ Target: *Cluster Computing* (Springer Nature official `sn-jnl.cls` source is und
 
 ## Main entry points
 
-1. Read `code/README_MCA_OFFICIAL.md` and the protocol notes before execution.
+1. Read `code/README_MCA_OFFICIAL.md` and the protocol notes before execution. The package is self-contained for the manuscript-facing MATLAB entry points; add `code/` and its subfolders to the MATLAB path as described there.
 2. Configure MATLAB paths to include `code/` and its subfolders.
 3. Use the relevant runner (`Run_MCA_Official_Static.m`, `Run_MCA_Official_Replay.m`, `Run_MCA_Repair_Transfer.m`, or `Run_MCA_Offline_GNN_Baseline.m`).
 4. Use the corresponding `Analyze_*.m`/`Analyze_*.py` script to regenerate summaries and figures from the result tables.
 
-The included outputs are the evidence used in the manuscript; rerunning is optional and may be computationally expensive.
+The included outputs are the evidence used in the manuscript; rerunning is optional and may be computationally expensive. Historical and pilot folders are retained for audit traceability and are explicitly excluded from manuscript claims.
 
 ## Canonical evidence mapping
 

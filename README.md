@@ -1,30 +1,9 @@
-# MEC ALM-AdamX Source Code
+# Reproducibility repository
 
-This repository contains the source code for the paper: **A User Satisfaction-Oriented Task Segmentation Scheme for Joint Communication and Task Offloading**, implementing the Augmented Lagrangian Method (ALM) coupled with the AdamX algorithm for Joint Task Segmentation and Offloading in Mobile Edge Computing (MEC).
+This repository contains source code and reproducibility materials for two separate mobile-edge/fog-computing studies. The manuscript-facing package for the Cluster Computing submission is:
 
-## Directory Structure
+- `Cluster_Computing_Reproducibility_2026-10-15/` — **Outcome-Aligned Task Offloading for DNN Inference in Heterogeneous Fog Networks**.
 
-- **`Original_Algorithm/`**: Contains the core implementation of the AdamX algorithm and the optimization loop.
-  - `AdamX.m`: The AdamX optimizer implementation combining Adam's adaptive learning rate with gradient constraints specific to the MEC offloading scenario.
-  - `optim.m`: The main optimization loop utilizing the AdamX solver.
+The package contains the exact manuscript source, frozen configurations, MATLAB/Python code and dependencies, run-level outputs, figure source data, checksums, and audit notes. Its evidence is limited to the tested simulator, five-node topology, algorithms, repair operator, and load regimes. Historical and pilot outputs are retained for audit traceability and are not manuscript evidence unless identified as such in the package README.
 
-- **`Refined_Simulation/`**: Contains the rigorous, trace-driven simulation environment and the updated ALM solvers (e.g., Memetic ALM, Pure ALM) used for generating the manuscript's experimental results.
-  - `run_manuscript_experiments_final.m`: The main script to execute the simulation and generate performance metrics (Satisfaction, Violation, Latency, etc.).
-  - `evaluate_solution.m`: The rigorous evaluation metric source using M/D/1 queuing models.
-  - `Memetic_ALM_Solver.m` / `Pure_ALM_Solver.m`: The refined ALM solvers.
-  - `generate_tier1_env_hetero.m`: Environment generation script for heterogeneous task profiles.
-  - `*_Profile.csv`: Trace-driven hardware profiles (MobileNet, ResNet, VGG16) used to model realistic computational workloads.
-  - Baseline Solvers: Includes `GA_Hybrid_Solver.m`, `Greedy_Solver_DNN.m`, and `DDPG_DNN_Solver.m` for comparative analysis.
-
-## Usage
-
-1. **Running the Main Simulation:**
-   Navigate to the `Refined_Simulation` folder in MATLAB and execute `run_manuscript_experiments_final.m`. This script will automatically generate the environment, run the proposed ALM solvers alongside baselines, and save the results.
-
-2. **Algorithm Implementation:**
-   The fundamental AdamX logic can be explored in `Original_Algorithm/AdamX.m`.
-
-## Requirements
-- MATLAB R2021a or newer.
-- Deep Learning Toolbox (if running DDPG/DNN baselines).
-- Optimization Toolbox.
+The older directories `Original_Algorithm/` and `Refined_Simulation/` are retained as repository history for the earlier task-offloading project; they are not the source package for the Cluster Computing manuscript.

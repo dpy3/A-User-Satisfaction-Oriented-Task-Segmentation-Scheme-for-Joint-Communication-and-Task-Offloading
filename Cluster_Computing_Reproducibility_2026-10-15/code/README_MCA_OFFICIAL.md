@@ -28,7 +28,7 @@ Historical result folders remain untouched and are not accepted as evidence here
 
 ## Commands
 
-    cd('.../Code/MCA_Official_2026')
+    cd('.../Reproducibility_Package_2026-10-15/code')
     Run_MCA_Metric_Audit
     Run_MCA_Official_Static('smoke')
     Run_MCA_Official_Replay('smoke')
