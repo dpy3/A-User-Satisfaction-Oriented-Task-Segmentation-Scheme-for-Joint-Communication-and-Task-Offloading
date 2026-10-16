@@ -1,8 +1,8 @@
 # Companion-study artifact overlap check (2026-10-16)
 
-A SHA-256 comparison was made between the current Cluster Computing source snapshot (128 files) and the local PMC source tree (44 files). It found 20 byte-identical files, including simulator/environment routines, hardware profiles, and implemented comparator code. These are shared implementation infrastructure and should be disclosed as such.
+A SHA-256 comparison was made between the Cluster Computing release code snapshot (128 files) and the local PMC code snapshot (44 files). It found 20 byte-identical files, including simulator/environment routines, hardware profiles, and implemented comparator code. These are shared implementation components; describe their reuse transparently in the related-work/editor disclosure as required by the journal.
 
-A SHA-256 comparison of the current Cluster data folder (30 files) and the PMC data folder (20 files) found 0 byte-identical file pairs. This is a file-identity result only; it cannot exclude transformed, summarized, or otherwise derived numerical reuse. The Cluster manuscript has no embedded figures. Authors must complete a table/source-data cross-check and disclose the related manuscript to the editor before submission.
+A SHA-256 comparison of the Cluster data folder (30 files) and the PMC data folder (20 files) found 0 byte-identical file pairs. The two study records also have no overlapping random seeds. These are file/protocol checks only: they cannot exclude transformed, summarized, or otherwise derived numerical reuse. The Cluster manuscript has no embedded figures. Authors must complete a table/source-data cross-check and disclose the related manuscript to the editor before submission.
 
 ## Identical code files
 

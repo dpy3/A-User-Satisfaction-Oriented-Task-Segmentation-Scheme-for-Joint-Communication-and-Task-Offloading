@@ -2,6 +2,8 @@
 
 Version 2026-10-16. This package accompanies the manuscript PDF/source in `manuscript/` and contains the versioned code and synthetic experiment artifacts cited in the manuscript's Data Availability statement. No measured device traces are included.
 
+Public release: [GitHub repository folder](https://github.com/dpy3/A-User-Satisfaction-Oriented-Task-Segmentation-Scheme-for-Joint-Communication-and-Task-Offloading/tree/main/Cluster_Computing_Reproducibility_2026-10-16). The adjacent ZIP is the same release; verify it with the supplied SHA-256 manifest.
+
 ## Contents
 
 - `manuscript/`: the 20-page PDF, LaTeX source, bibliography, and Springer class/style files.
