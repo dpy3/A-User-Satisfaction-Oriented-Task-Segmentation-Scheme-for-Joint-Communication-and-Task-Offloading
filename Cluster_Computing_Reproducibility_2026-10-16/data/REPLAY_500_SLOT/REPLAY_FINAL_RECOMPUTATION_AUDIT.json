@@ -1,0 +1,225 @@
+{
+  "source_slot_files": [
+    "Replay_SlotLevel_N180_R11to15.csv",
+    "Replay_SlotLevel_N180_R16to20.csv",
+    "Replay_SlotLevel_N180_R1to3.csv",
+    "Replay_SlotLevel_N180_R4to5.csv",
+    "Replay_SlotLevel_N180_R6to10.csv",
+    "Replay_SlotLevel_N300_R11to15.csv",
+    "Replay_SlotLevel_N300_R16to20.csv",
+    "Replay_SlotLevel_N300_R1to5.csv",
+    "Replay_SlotLevel_N300_R6to10.csv"
+  ],
+  "source_program_run_files": [
+    "Replay_RunLevel_N180_R11to15.csv",
+    "Replay_RunLevel_N180_R16to20.csv",
+    "Replay_RunLevel_N180_R1to3.csv",
+    "Replay_RunLevel_N180_R4to5.csv",
+    "Replay_RunLevel_N180_R6to10.csv",
+    "Replay_RunLevel_N300_R11to15.csv",
+    "Replay_RunLevel_N300_R16to20.csv",
+    "Replay_RunLevel_N300_R1to5.csv",
+    "Replay_RunLevel_N300_R6to10.csv"
+  ],
+  "slot_rows": 60000,
+  "run_rows_recomputed": 120,
+  "unique_method_slot_keys": 60000,
+  "group_count": 120,
+  "all_groups_500_slots": true,
+  "all_queue_and_count_checks_pass": true,
+  "program_runlevel_matches_recomputed": true,
+  "errors": {
+    "row_count": 0,
+    "duplicate_keys": 0,
+    "unknown_algorithm_rows": 0,
+    "wrong_evidence_class_rows": 0,
+    "wrong_schema_rows": 0,
+    "satisfaction_formula_rows": 0,
+    "resource_violation_rows": 0,
+    "offered_count_rows": 0,
+    "queue_conservation_rows": 0,
+    "backlog_cap_rows": 0,
+    "cap_drop_rows": 0,
+    "invalid_slot_rows": 0,
+    "wrong_group_count": 0,
+    "incomplete_groups": 0,
+    "run_rows_missing_or_extra": 0,
+    "runlevel_mismatch_Slots": 0,
+    "runlevel_mismatch_MeanSat": 0,
+    "runlevel_mismatch_TotalSatisfied": 0,
+    "runlevel_mismatch_BacklogAUC": 0,
+    "runlevel_mismatch_PeakBacklog": 0,
+    "runlevel_mismatch_FinalBacklog": 0,
+    "runlevel_mismatch_QueueCapDrops": 0,
+    "runlevel_mismatch_DeadlineMisses": 0,
+    "runlevel_mismatch_MemoryBlocks": 0,
+    "runlevel_mismatch_IntrinsicLatencyBlocks": 0,
+    "runlevel_mismatch_SpilloverBlocks": 0,
+    "runlevel_mismatch_FeasibleMisses": 0,
+    "runlevel_mismatch_MeanRuntimeSec": 0
+  },
+  "summary_by_scale": [
+    {
+      "N": 180,
+      "Algorithm": "Greedy",
+      "n_runs": 20,
+      "mean_run_mean_slot_satisfaction_pct": 28.704369226938827,
+      "sd_across_run_mean_slot_satisfaction_pct": 0.08243379330897703,
+      "ci95_run_mean_slot_satisfaction_pct": [
+        28.665789024094384,
+        28.74294942978327
+      ],
+      "mean_completions_per_run": 51540.3,
+      "mean_queue_cap_drops_per_run": 38279.7,
+      "mean_backlog_auc_per_run": 89895.8,
+      "mean_peak_backlog": 180.0,
+      "mean_final_backlog": 180.0,
+      "mean_runtime_per_slot_s": 0.00471661108
+    },
+    {
+      "N": 180,
+      "Algorithm": "GAHybrid",
+      "n_runs": 20,
+      "mean_run_mean_slot_satisfaction_pct": 27.72444129611106,
+      "sd_across_run_mean_slot_satisfaction_pct": 0.2973631903019654,
+      "ci95_run_mean_slot_satisfaction_pct": [
+        27.585271039110754,
+        27.863611553111365
+      ],
+      "mean_completions_per_run": 49401.55,
+      "mean_queue_cap_drops_per_run": 40418.45,
+      "mean_backlog_auc_per_run": 89514.35,
+      "mean_peak_backlog": 180.0,
+      "mean_final_backlog": 180.0,
+      "mean_runtime_per_slot_s": 5.36815129913
+    },
+    {
+      "N": 180,
+      "Algorithm": "ALM",
+      "n_runs": 20,
+      "mean_run_mean_slot_satisfaction_pct": 46.844548476314884,
+      "sd_across_run_mean_slot_satisfaction_pct": 16.661030140551297,
+      "ci95_run_mean_slot_satisfaction_pct": [
+        39.04694634474055,
+        54.64215060788922
+      ],
+      "mean_completions_per_run": 65603.1,
+      "mean_queue_cap_drops_per_run": 24225.9,
+      "mean_backlog_auc_per_run": 71290.45,
+      "mean_peak_backlog": 171.6,
+      "mean_final_backlog": 171.0,
+      "mean_runtime_per_slot_s": 10.26175019973
+    },
+    {
+      "N": 300,
+      "Algorithm": "Greedy",
+      "n_runs": 20,
+      "mean_run_mean_slot_satisfaction_pct": 3.7797158522758574,
+      "sd_across_run_mean_slot_satisfaction_pct": 1.1765642389625477,
+      "ci95_run_mean_slot_satisfaction_pct": [
+        3.2290668383629084,
+        4.330364866188806
+      ],
+      "mean_completions_per_run": 11164.8,
+      "mean_queue_cap_drops_per_run": 138535.2,
+      "mean_backlog_auc_per_run": 149863.0,
+      "mean_peak_backlog": 300.0,
+      "mean_final_backlog": 300.0,
+      "mean_runtime_per_slot_s": 0.00865413341
+    },
+    {
+      "N": 300,
+      "Algorithm": "GAHybrid",
+      "n_runs": 20,
+      "mean_run_mean_slot_satisfaction_pct": 2.8393616645848465,
+      "sd_across_run_mean_slot_satisfaction_pct": 4.589980314413063,
+      "ci95_run_mean_slot_satisfaction_pct": [
+        0.6911847522557477,
+        4.987538576913945
+      ],
+      "mean_completions_per_run": 8350.95,
+      "mean_queue_cap_drops_per_run": 141349.05,
+      "mean_backlog_auc_per_run": 149868.6,
+      "mean_peak_backlog": 300.0,
+      "mean_final_backlog": 300.0,
+      "mean_runtime_per_slot_s": 7.590547622759999
+    },
+    {
+      "N": 300,
+      "Algorithm": "ALM",
+      "n_runs": 20,
+      "mean_run_mean_slot_satisfaction_pct": 3.852959792473309,
+      "sd_across_run_mean_slot_satisfaction_pct": 3.6896767195591864,
+      "ci95_run_mean_slot_satisfaction_pct": [
+        2.126137932687458,
+        5.57978165225916
+      ],
+      "mean_completions_per_run": 11385.9,
+      "mean_queue_cap_drops_per_run": 138314.1,
+      "mean_backlog_auc_per_run": 149860.0,
+      "mean_peak_backlog": 300.0,
+      "mean_final_backlog": 300.0,
+      "mean_runtime_per_slot_s": 18.59887531315
+    }
+  ],
+  "paired_contrasts_descriptive": [
+    {
+      "N": 180,
+      "contrast": "ALM - Greedy",
+      "n_paired_runs": 20,
+      "mean_difference_percentage_points": 18.140179249376047,
+      "ci95_percentage_points": [
+        10.362672737172147,
+        25.917685761579946
+      ],
+      "positive_pairs": 20,
+      "ties": 0,
+      "negative_pairs": 0
+    },
+    {
+      "N": 180,
+      "contrast": "ALM - GAHybrid",
+      "n_paired_runs": 20,
+      "mean_difference_percentage_points": 19.12010718020381,
+      "ci95_percentage_points": [
+        11.332868534825618,
+        26.907345825582002
+      ],
+      "positive_pairs": 20,
+      "ties": 0,
+      "negative_pairs": 0
+    },
+    {
+      "N": 300,
+      "contrast": "ALM - Greedy",
+      "n_paired_runs": 20,
+      "mean_difference_percentage_points": 0.07324394019745206,
+      "ci95_percentage_points": [
+        -1.8062603565132969,
+        1.952748236908201
+      ],
+      "positive_pairs": 8,
+      "ties": 0,
+      "negative_pairs": 12
+    },
+    {
+      "N": 300,
+      "contrast": "ALM - GAHybrid",
+      "n_paired_runs": 20,
+      "mean_difference_percentage_points": 1.013598127888462,
+      "ci95_percentage_points": [
+        -1.7658295006053772,
+        3.7930257563823013
+      ],
+      "positive_pairs": 15,
+      "ties": 0,
+      "negative_pairs": 5
+    }
+  ],
+  "equal_scale_weight_mean_satisfaction_pct": {
+    "ALM": 25.348754134394092,
+    "GAHybrid": 15.281901480347955,
+    "Greedy": 16.242042539607343
+  },
+  "interpretation_boundary": "Algorithm comparisons are descriptive for this synthetic replay protocol; run durations are not a controlled equal-budget timing experiment."
+}

@@ -1,0 +1,36 @@
+{
+  "Files": [
+    "Replay_Checkpoint_N180_R11to15.mat",
+    "Replay_Checkpoint_N180_R16to20.mat",
+    "Replay_Checkpoint_N180_R1to3.mat",
+    "Replay_Checkpoint_N180_R4to5.mat",
+    "Replay_Checkpoint_N180_R6to10.mat",
+    "Replay_Checkpoint_N300_R11to15.mat",
+    "Replay_Checkpoint_N300_R16to20.mat",
+    "Replay_Checkpoint_N300_R1to5.mat",
+    "Replay_Checkpoint_N300_R6to10.mat"
+  ],
+  "AllConfigsIdentical": true,
+  "Mode": "replaycorrected",
+  "SchemaVersion": "MCA-CANDIDATE-1.0-REPLAY",
+  "Algorithms": [
+    "Greedy",
+    "GAHybrid",
+    "ALM"
+  ],
+  "Scales": [
+    180,
+    300
+  ],
+  "RunsPerScale": 20,
+  "Slots": 500,
+  "BacklogCapRatio": 1,
+  "SeedBase": 2.0260723E+9,
+  "Population": 100,
+  "GAGenerations": 100,
+  "ALMMaxIterations": 50,
+  "ALMLocalSearchProbability": 0.25,
+  "ALMUpdatesPerInvocation": 5,
+  "RepairAwareFitness": true,
+  "GuardedLocalSearch": true
+}

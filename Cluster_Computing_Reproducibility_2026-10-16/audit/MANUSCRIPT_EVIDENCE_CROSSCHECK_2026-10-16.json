@@ -1,0 +1,43 @@
+{
+  "checked_at": "2026-10-16",
+  "strict_rows": 720,
+  "strict_per_arm": {
+    "RawLocalOff": 180,
+    "RawLocalOn": 180,
+    "RepairLocalOff": 180,
+    "RepairLocalOn": 180
+  },
+  "strict_total_inner_updates_by_arm": {
+    "RawLocalOff": 0,
+    "RawLocalOn": 1784010,
+    "RepairLocalOff": 0,
+    "RepairLocalOn": 1784010
+  },
+  "replay_rows": 60000,
+  "replay_group_count": 120,
+  "replay_groups_500_slots": true,
+  "checks": {
+    "strict_rows_720": true,
+    "strict_unique_run_load_arm": true,
+    "strict_arms_4x180": {
+      "RawLocalOff": 180,
+      "RawLocalOn": 180,
+      "RepairLocalOff": 180,
+      "RepairLocalOn": 180
+    },
+    "strict_score_cap_exact": true,
+    "strict_pairing_30_per_load": true,
+    "strict_changed_genes_zero": true,
+    "strict_local_updates_per_on_arm": {
+      "RawLocalOff": 0,
+      "RawLocalOn": 1784010,
+      "RepairLocalOff": 0,
+      "RepairLocalOn": 1784010
+    },
+    "static_results_claims_present": true,
+    "replay_rows_60000": true,
+    "replay_group_rows_500": true,
+    "replay_table_key_values_present": true
+  },
+  "all_pass": true
+}

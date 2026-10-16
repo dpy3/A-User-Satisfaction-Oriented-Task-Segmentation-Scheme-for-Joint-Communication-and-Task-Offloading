@@ -1,0 +1,7 @@
+{
+  "BudgetBoundaryChecks": 20,
+  "DisabledLocalChecks": 10,
+  "MonotonePolishChecks": 4,
+  "Passed": true,
+  "Scope": "Diagnostic boundary and invariant checks, not formal performance evidence."
+}

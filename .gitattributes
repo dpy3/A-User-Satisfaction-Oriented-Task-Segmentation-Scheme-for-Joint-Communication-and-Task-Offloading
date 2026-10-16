@@ -1,0 +1,3 @@
+# Preserve release-package bytes so its SHA-256 manifest remains valid.
+Cluster_Computing_Reproducibility_2026-10-16/** -text
+Cluster_Computing_Reproducibility_2026-10-16.zip binary
