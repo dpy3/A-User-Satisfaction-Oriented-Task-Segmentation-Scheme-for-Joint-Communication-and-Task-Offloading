@@ -17,6 +17,10 @@ Public release: [GitHub repository folder](https://github.com/dpy3/A-User-Satisf
 
 Use MATLAB with Statistics and Machine Learning Toolbox for the formal experiment and replay; use Python 3 with NumPy, pandas, SciPy, and Matplotlib as needed by the included analysis scripts. Add `code/` and its subfolders to the MATLAB path and read the protocol notes before rerunning; formal runs are computationally intensive.
 
+For a release-level evidence check without rerunning the optimizers, run
+`python code/Audit_MCA_Manuscript_Claims.py`. It validates the current Strict V2
+and 500-slot exports and writes `audit/MANUSCRIPT_EVIDENCE_AUDIT_2026-10-16.md`.
+
 The replay can be audited without rerunning: it contains 60,000 rows in 120 N/run/method groups of 500 consecutive slots. See the independent audit under `data/REPLAY_500_SLOT/`.
 
 ## Evidence boundaries
