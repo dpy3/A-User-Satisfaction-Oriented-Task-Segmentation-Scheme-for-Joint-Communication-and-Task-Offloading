@@ -4,6 +4,8 @@ A SHA-256 comparison was made between the Cluster Computing release code snapsho
 
 A SHA-256 comparison of the Cluster data folder (30 files) and the PMC data folder (20 files) found 0 byte-identical file pairs. The two study records also have no overlapping random seeds. These are file/protocol checks only: they cannot exclude transformed, summarized, or otherwise derived numerical reuse. The Cluster manuscript has no embedded figures. Authors must complete a table/source-data cross-check and disclose the related manuscript to the editor before submission.
 
+A targeted exact-value comparison of the two primary formal run-level satisfaction datasets is documented in `COMPANION_STUDY_NUMERIC_CROSSCHECK_2026-10-16.md`. It found no exact satisfaction-value match in the common N=180 subset, and one coincident scalar value across unmatched conditions (N=250 versus N=180). This narrow check does not prove independence and does not cover every onset, sensitivity, or ablation output.
+
 ## Identical code files
 
 - `Algorithms/LP_Relaxed_Solver_Binary.m` = `Algorithms/LP_Relaxed_Solver_Binary.m` (SHA-256 `0713f2773950600a28c56f8a7305dd667c73150344dfbdd7bb240429f434094b`)

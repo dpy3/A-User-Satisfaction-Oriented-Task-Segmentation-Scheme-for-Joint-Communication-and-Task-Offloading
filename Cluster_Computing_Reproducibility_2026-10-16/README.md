@@ -11,7 +11,7 @@ Public release: [GitHub repository folder](https://github.com/dpy3/A-User-Satisf
 - `data/STRICT_V2/`: 720 factorial run records (six loads, 30 paired environments per load, four arms), paired contrasts, and protocol notes.
 - `data/OFFLINEGNN/`: run-level output and frozen checkpoint for the internal comparator; descriptive only.
 - `data/REPLAY_500_SLOT/`: merged 60,000 method-slot rows, independent run-level recomputation, summaries, paired descriptive contrasts, nine checkpoint snapshots, and audit/configuration records. Original shard CSV exports were not retained in the final folder; the merged exports and checkpoint comparison are supplied.
-- `audit/`: citation-claim, companion-study artifact-overlap, and evidence cross-check records.
+- `audit/`: citation-claim, replay/evidence, companion-study file-overlap, and targeted primary-run numerical cross-check records. The cross-study numeric check is deliberately scoped and does not certify that every derived result is independent.
 
 ## Reproduction
 
